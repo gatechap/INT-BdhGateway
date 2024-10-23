@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-bdhgateway
+  namespace: intbackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-bdhgateway
+      env: uat7
+      version: 1.0.0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%   
+  template:
+    metadata:
+      labels:
+        app: deploy-bdhgateway
+        env: uat7
+        version: 1.0.0
+    spec:
+      containers:
+      - name: containers-bdhgateway
+        env:
+        - name: env
+          value: uat7
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bdhgateway-config
+  namespace: intbackend
+data:
+  application.yml: |-
+    application:
+      name: bdhgateway
+      profile: uat7
+    server:
+      port: :8080
+    redis:
+      address: redis-int-uat7.int.svc:6379
+    service:
+      -
+        name: "usageConsumption"
+        endpoint: "https://amd-apigw-stack-service-tru-th01-env01-tcms.apps.cesnp.true.th/usageConsumption/v1/usageConsumptionReport/"
+        system: "BDH"
+        user: ""
+        password: ""
+        connectionTimeout: 5000
+        readTimeout: 10000
+        tokenAccess: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ZjFmNGZmLWIyNzYtNDhiMC05ZTRhLWMxODY5YzgyZjhiMSJ9.eyJzdWIiOiJEQk1Bc1VzZXIiLCJyb2xlcyI6WyJEMV9BUElfUFJvbGUiLCJVQ1JfQVBJX1JvbGUiXSwib2l0IjoxNzU5Mjc2ODAwLCJleHAiOjE3NTkyNzY4MDAsImlhdCI6MTYwMjg0Mjg5MywidHRsIjoxNzU5Mjc2ODAwfQ.w46k6k42sZeh_MIRxVvBanL8bd_0CrfHNwqqi0ehhFLYshUwwOo2eaAIbGK6degiyA7BpLc7XSIF9Wnj8Rx3XsQhuS5LnSJqM9iJOMBcT6mRXbE2bp8HuakeMaMIfDaJ_B9-AyvaFeIkkbd7_tjv2sjEm7Y3987sw8EFa_MRTgQKhmTxej9VTXAT88mYstfBDZW3b8QnM7zWOl5F2NVlL6-NmKL649MTsHD_4pqMRUefqx0zqKFuCo9yj-o7SJon4phwv274PUEHJ9P4e-C_nad7XAhO0D3imgFE5CKCuO2ZKNEoEbE8gm6A9C6hT3XzjJ7TFQVOQuMX6vCdPvn99A"
+      -
+        name: "usage"
+        endpoint: "https://amd-apigw-stack-service-tru-th01-env01-tcms.apps.cesnp.true.th/usageManagement/v2/usage/"
+        system: "BDH"
+        user: ""
+        password: ""
+        connectionTimeout: 5000
+        readTimeout: 10000
+        tokenAccess: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ZjFmNGZmLWIyNzYtNDhiMC05ZTRhLWMxODY5YzgyZjhiMSJ9.eyJzdWIiOiJEQk1Bc1VzZXIiLCJyb2xlcyI6WyJEMV9BUElfUFJvbGUiLCJVQ1JfQVBJX1JvbGUiXSwib2l0IjoxNzU5Mjc2ODAwLCJleHAiOjE3NTkyNzY4MDAsImlhdCI6MTYwMjg0Mjg5MywidHRsIjoxNzU5Mjc2ODAwfQ.w46k6k42sZeh_MIRxVvBanL8bd_0CrfHNwqqi0ehhFLYshUwwOo2eaAIbGK6degiyA7BpLc7XSIF9Wnj8Rx3XsQhuS5LnSJqM9iJOMBcT6mRXbE2bp8HuakeMaMIfDaJ_B9-AyvaFeIkkbd7_tjv2sjEm7Y3987sw8EFa_MRTgQKhmTxej9VTXAT88mYstfBDZW3b8QnM7zWOl5F2NVlL6-NmKL649MTsHD_4pqMRUefqx0zqKFuCo9yj-o7SJon4phwv274PUEHJ9P4e-C_nad7XAhO0D3imgFE5CKCuO2ZKNEoEbE8gm6A9C6hT3XzjJ7TFQVOQuMX6vCdPvn99A"
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-bdhgateway
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  namespace: intbackend
+spec:
+  rules:
+  - host: api-bdhgateway-uat7.intbackend.arctic.true.th
+    http:
+      paths:
+        - backend:
+            serviceName: service-bdhgateway
+            servicePort: 80
+          path: /
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-bdhgateway
+  namespace: intbackend
+  labels:
+    app: service-bdhgateway
+    env: uat7
+    version: 1.0.0

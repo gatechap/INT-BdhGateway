@@ -1,0 +1,110 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bdhgateway-config
+  namespace: intbackend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-bdhgateway
+  namespace: intbackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deploy-bdhgateway
+      env: uat
+      version: 1.0.0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%   
+  template:
+    metadata:
+      labels:
+        app: deploy-bdhgateway
+        env: uat
+        version: 1.0.0
+    spec:
+      containers:
+      - name: containers-bdhgateway
+        image: ${image}
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            memory: 512Mi
+            ephemeral-storage: 64Mi
+          requests:
+            cpu: 50m
+            memory: 256Mi
+            ephemeral-storage: 32Mi
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /index.html
+            port: 8080
+            scheme: HTTP
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /index.html
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        envFrom:
+        - configMapRef:
+            name: bdhgateway-config
+        volumeMounts:
+          - name: bdhgateway-config
+            mountPath: /app/configmap/
+            readOnly: true
+      volumes:
+        - name: bdhgateway-config
+          configMap:
+            name: bdhgateway-config
+      imagePullSecrets:
+      - name: intregcred
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-bdhgateway
+  namespace: intbackend
+  labels:
+    app: service-bdhgateway
+    env: uat
+    version: 1.0.0
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: deploy-bdhgateway
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: api-bdhgateway
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  namespace: intbackend
+spec:
+  rules:
+  - host: aa.intbackend.arctic.true.th
+    http:
+      paths:
+        - backend:
+            serviceName: service-bdhgateway
+            servicePort: 80
+          path: /

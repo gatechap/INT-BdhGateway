@@ -1,0 +1,36 @@
+application:
+  name: bdhgateway
+  profile: dev
+server:
+  port: :8080
+redis:
+  address: 127.0.0.1:6379
+  enableRadis: true
+service:
+  -
+    name: "usageConsumption"
+    endpoint: "https://amd-apigw-stack-service-tru-th01-env01-tcms.apps.cesnp.true.th/usageConsumption/v1/usageConsumptionReport/"
+    system: "BDH"
+    user: ""
+    password: ""
+    connectionTimeout: 5000
+    readTimeout: 10000
+    tokenAccess: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ZjFmNGZmLWIyNzYtNDhiMC05ZTRhLWMxODY5YzgyZjhiMSJ9.eyJzdWIiOiJEQk1Bc1VzZXIiLCJyb2xlcyI6WyJEMV9BUElfUFJvbGUiLCJVQ1JfQVBJX1JvbGUiXSwib2l0IjoxNzU5Mjc2ODAwLCJleHAiOjE3NTkyNzY4MDAsImlhdCI6MTYwMjg0Mjg5MywidHRsIjoxNzU5Mjc2ODAwfQ.w46k6k42sZeh_MIRxVvBanL8bd_0CrfHNwqqi0ehhFLYshUwwOo2eaAIbGK6degiyA7BpLc7XSIF9Wnj8Rx3XsQhuS5LnSJqM9iJOMBcT6mRXbE2bp8HuakeMaMIfDaJ_B9-AyvaFeIkkbd7_tjv2sjEm7Y3987sw8EFa_MRTgQKhmTxej9VTXAT88mYstfBDZW3b8QnM7zWOl5F2NVlL6-NmKL649MTsHD_4pqMRUefqx0zqKFuCo9yj-o7SJon4phwv274PUEHJ9P4e-C_nad7XAhO0D3imgFE5CKCuO2ZKNEoEbE8gm6A9C6hT3XzjJ7TFQVOQuMX6vCdPvn99A"
+  -
+    name: "usage"
+    endpoint: "https://amd-apigw-stack-service-tru-th01-env01-tcms.apps.cesnp.true.th/usageManagement/v2/usage/"
+    system: "BDH"
+    user: ""
+    password: ""
+    connectionTimeout: 5000
+    readTimeout: 10000
+    tokenAccess: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImY1ZjFmNGZmLWIyNzYtNDhiMC05ZTRhLWMxODY5YzgyZjhiMSJ9.eyJzdWIiOiJEQk1Bc1VzZXIiLCJyb2xlcyI6WyJEMV9BUElfUFJvbGUiLCJVQ1JfQVBJX1JvbGUiXSwib2l0IjoxNzU5Mjc2ODAwLCJleHAiOjE3NTkyNzY4MDAsImlhdCI6MTYwMjg0Mjg5MywidHRsIjoxNzU5Mjc2ODAwfQ.w46k6k42sZeh_MIRxVvBanL8bd_0CrfHNwqqi0ehhFLYshUwwOo2eaAIbGK6degiyA7BpLc7XSIF9Wnj8Rx3XsQhuS5LnSJqM9iJOMBcT6mRXbE2bp8HuakeMaMIfDaJ_B9-AyvaFeIkkbd7_tjv2sjEm7Y3987sw8EFa_MRTgQKhmTxej9VTXAT88mYstfBDZW3b8QnM7zWOl5F2NVlL6-NmKL649MTsHD_4pqMRUefqx0zqKFuCo9yj-o7SJon4phwv274PUEHJ9P4e-C_nad7XAhO0D3imgFE5CKCuO2ZKNEoEbE8gm6A9C6hT3XzjJ7TFQVOQuMX6vCdPvn99A"  
+  -
+    name: "getCreditLimitWithPerformanceIndicators"
+    endpoint: "https://ccb.true.th/bdh/uat22/customerService/getCreditLimitWithPerformanceIndicators"
+    system: "BDH"
+    user: ""
+    password: ""
+    connectionTimeout: 5000
+    readTimeout: 10000
+    tokenAccess: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJqd3QtaW50eCIsImV4cCI6Im51bGwiLCJpYXQiOjE1MTYyMzkwMjJ9.Xa6DXJTnSNc8nBFp0RFeAZ_XUSzo6K9PQOF31ouvw4g"  

@@ -1,0 +1,16 @@
+application:
+  name: bdhgateway
+  profile: local
+server:
+  port: :8070
+redis:
+  address: 127.0.0.1:6379
+envctrl:
+  maxthread: 20
+api:
+  getrediscachevalues:
+    maxinputcachekeys: 100
+  setrediscachemultiple:
+    maxinputcachekeys: 100
+  delrediscachemultiple:
+    maxinputcachekeys: 100

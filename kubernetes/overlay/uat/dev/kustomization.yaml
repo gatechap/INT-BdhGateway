@@ -1,0 +1,7 @@
+bases:
+- ../../../base
+nameSuffix: -dev
+commonLabels:
+  app: deploy-bdhgateway-dev
+patchesStrategicMerge:
+- patch.yaml

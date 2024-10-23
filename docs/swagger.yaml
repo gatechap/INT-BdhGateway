@@ -1,0 +1,804 @@
+basePath: /
+definitions:
+  apimodel.AccountInfo:
+    properties:
+      accStsBan:
+        type: integer
+      accountNo:
+        type: integer
+      accountOpenDate:
+        type: string
+      accountPriority:
+        type: string
+      accountSubType:
+        type: string
+      accountingBalancePolicy:
+        type: string
+      addressInfo:
+        type: object
+      agreementId:
+        type: integer
+      altFinObligationFrm:
+        type: string
+      atbCharityCode:
+        type: object
+      autoBlacklistInd:
+        type: string
+      autoBlacklistRsnCd:
+        type: object
+      autoBlacklistUpDate:
+        type: object
+      billingCurrency:
+        type: string
+      businessEntityId:
+        type: integer
+      clWaiverUpdDate:
+        type: string
+      colLastActDate:
+        type: object
+      colRsnCd:
+        type: string
+      colStatus:
+        type: string
+      collWaiverExpDate:
+        type: object
+      collectionFixCsrCd:
+        type: object
+      collectionFixPolicy:
+        type: string
+      collectionInd:
+        type: string
+      collectionPermanentWaiveInd:
+        type: string
+      collectionStartDate:
+        type: object
+      collectionStatus:
+        type: string
+      companyCode:
+        type: string
+      convEffectiveDate:
+        type: object
+      convergenceCode:
+        type: object
+      crdLmtFixPolicyCd:
+        type: object
+      creditClass:
+        type: string
+      creditClassUpdDate:
+        type: string
+      creditLastActDate:
+        type: object
+      creditLimitExpDate:
+        type: object
+      creditLimitRsnCode:
+        type: string
+      creditLimitWaiverExpDate:
+        type: object
+      creditLimitWaiverInd:
+        type: string
+      creditRsnCd:
+        type: object
+      creditStatus:
+        type: string
+      custBranchNo:
+        type: string
+      custTaxId:
+        type: string
+      customerNo:
+        type: integer
+      customerSubType:
+        type: string
+      customerType:
+        type: string
+      dfltCreditLimit:
+        type: integer
+      documentType:
+        type: string
+      externalId:
+        type: object
+      finObligationFrm:
+        type: string
+      fullSuspensionIndicator:
+        type: string
+      historyInd:
+        type: object
+      iddIndicator:
+        type: string
+      incrThreshold:
+        type: integer
+      initThreshold:
+        type: integer
+      initiationReason:
+        type: object
+      irIndicator:
+        type: string
+      legacyBan:
+        type: integer
+      manualBlacklistInd:
+        type: string
+      manualBlacklistRsnCd:
+        type: object
+      manualBlacklistUpDate:
+        type: object
+      minimumPay:
+        type: string
+      nameInfo:
+        type: object
+      oblgCalcFormUpdDate:
+        type: string
+      obligationCalcFormula:
+        type: string
+      operatorId:
+        type: integer
+      operatorName:
+        type: string
+      parentAccount:
+        type: integer
+      partnerCode:
+        type: object
+      personalClUpdDate:
+        type: string
+      personalCreditLimit:
+        type: integer
+      punishmentLevel:
+        type: object
+      relatedOu:
+        type: integer
+      specialInstructions:
+        type: object
+      suspensionRsn:
+        type: string
+      suspensionType:
+        type: object
+      taxExemptionDate:
+        type: object
+      tempClUpdDate:
+        type: object
+      tempCreditLimit:
+        type: integer
+      whtCertiNo:
+        type: object
+      whtInd:
+        type: string
+      whtTaxUpDate:
+        type: object
+    type: object
+  apimodel.AddressInfo:
+    properties:
+      addressLine1:
+        type: string
+      addressLine2:
+        type: string
+      addressLine3:
+        type: string
+      addressLine4:
+        type: string
+      addressType:
+        type: string
+      amphur:
+        type: string
+      city:
+        type: string
+      effectiveDate:
+        type: string
+      houseNo:
+        type: string
+      linkType:
+        type: string
+      moo:
+        type: string
+      streetName:
+        type: string
+      tumbon:
+        type: string
+      typeOfAccomodation:
+        type: string
+      zip:
+        type: string
+    type: object
+  apimodel.AttributeInfoList:
+    properties:
+      attributeName:
+        type: string
+      attributeValue:
+        type: string
+    type: object
+  apimodel.AttributeList:
+    properties:
+      attributeName:
+        type: string
+      attributeValue:
+        type: string
+    type: object
+  apimodel.BackendResponseInfoArray:
+    properties:
+      apiName:
+        type: string
+      errorCode:
+        type: string
+      message:
+        type: string
+      system:
+        type: string
+      url:
+        type: string
+    type: object
+  apimodel.BackendResponseList:
+    properties:
+      backendResponseInfoArray:
+        items:
+          $ref: '#/definitions/apimodel.BackendResponseInfoArray'
+        type: array
+      size:
+        type: integer
+    type: object
+  apimodel.CustomerCyclesInfos:
+    properties:
+      customerNo:
+        type: integer
+      customerPartitionId:
+        type: integer
+      cycleCode:
+        type: integer
+      cycleInstance:
+        type: integer
+      cycleSeqNo:
+        type: integer
+      cycleYear:
+        type: integer
+      endDate:
+        type: string
+      runDate:
+        type: object
+      startDate:
+        type: string
+      status:
+        type: string
+    type: object
+  apimodel.CycleInfo:
+    properties:
+      code:
+        type: string
+      month:
+        type: string
+      year:
+        type: string
+    type: object
+  apimodel.Data:
+    properties:
+      accountInfo:
+        $ref: '#/definitions/apimodel.AccountInfo'
+      customerCyclesInfos:
+        items:
+          $ref: '#/definitions/apimodel.CustomerCyclesInfos'
+        type: array
+      nameAddressInfoList:
+        items:
+          $ref: '#/definitions/apimodel.NameAddressInfoList'
+        type: array
+      performanceIndicatorInfos:
+        items:
+          $ref: '#/definitions/apimodel.PerformanceIndicatorInfos'
+        type: array
+    type: object
+  apimodel.ErrorMessageInfo:
+    properties:
+      errorCode:
+        type: string
+      errorMessage:
+        type: string
+    type: object
+  apimodel.FlexibleCycleInfo:
+    properties:
+      code:
+        type: string
+      month:
+        type: string
+      year:
+        type: string
+    type: object
+  apimodel.GetCreditLimitWithPerformanceIndicatorsList:
+    properties:
+      results:
+        items:
+          $ref: '#/definitions/apimodel.Results'
+        type: array
+    type: object
+  apimodel.GetCreditLimitWithPerformanceIndicatorsRequest:
+    properties:
+      requestList:
+        items:
+          $ref: '#/definitions/apimodel.RequestList'
+        type: array
+    required:
+    - requestList
+    type: object
+  apimodel.GetCreditLimitWithPerformanceIndicatorsResponse:
+    properties:
+      backendResponseList:
+        $ref: '#/definitions/apimodel.BackendResponseList'
+      errorCode:
+        type: string
+      getCreditLimitWithPerformanceIndicatorsList:
+        $ref: '#/definitions/apimodel.GetCreditLimitWithPerformanceIndicatorsList'
+      message:
+        type: string
+      uuid:
+        type: string
+    type: object
+  apimodel.GetRatedEventsListInfoResponse:
+    properties:
+      ratedEventsInfoMList:
+        $ref: '#/definitions/apimodel.RatedEventsInfoList'
+    type: object
+  apimodel.GetRatedPerformanceIndicatorsList:
+    properties:
+      attributeList:
+        items:
+          $ref: '#/definitions/apimodel.AttributeList'
+        type: array
+      pIType:
+        type: string
+      performanceIndicatorID:
+        $ref: '#/definitions/apimodel.PerformanceIndicatorID'
+    type: object
+  apimodel.GetUsageRequest:
+    properties:
+      SubscriberId:
+        type: string
+      ban:
+        type: string
+      callerUuid:
+        type: string
+      correlatedId:
+        type: string
+      customerId:
+        type: string
+      cycleCode:
+        type: string
+      cycleInstance:
+        type: string
+      cycleYear:
+        type: string
+      pageNumber:
+        type: integer
+      pageSize:
+        type: integer
+    required:
+    - ban
+    - correlatedId
+    - customerId
+    - cycleCode
+    - cycleInstance
+    - cycleYear
+    type: object
+  apimodel.GetUsageResponse:
+    properties:
+      backendResponseList:
+        $ref: '#/definitions/apimodel.BackendResponseList'
+      errorCode:
+        type: string
+      getRatedEventsListInfoResponse:
+        $ref: '#/definitions/apimodel.GetRatedEventsListInfoResponse'
+      message:
+        type: string
+      uuid:
+        type: string
+    type: object
+  apimodel.HttpErrorResponse:
+    properties:
+      '@timestamp':
+        type: string
+      error:
+        type: string
+      message:
+        type: string
+      path:
+        type: string
+      status:
+        type: integer
+    type: object
+  apimodel.NameAddressInfoList:
+    properties:
+      addressInfo:
+        $ref: '#/definitions/apimodel.AddressInfo'
+      nameInfo:
+        $ref: '#/definitions/apimodel.NameInfo'
+    type: object
+  apimodel.NameInfo:
+    properties:
+      effectiveDate:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: string
+      identification:
+        type: string
+      identificationType:
+        type: string
+      lastName:
+        type: string
+      linkType:
+        type: string
+      maritalStatus:
+        type: string
+      nameLine1:
+        type: string
+      nameType:
+        type: string
+      title:
+        type: string
+    type: object
+  apimodel.PerformanceIndicatorID:
+    properties:
+      agreementId:
+        type: string
+      cycleInfo:
+        $ref: '#/definitions/apimodel.CycleInfo'
+      flexibleCycleInfo:
+        $ref: '#/definitions/apimodel.FlexibleCycleInfo'
+      offerInstance:
+        type: string
+      partitionId:
+        type: string
+      performanceIndicatorId:
+        type: string
+    type: object
+  apimodel.PerformanceIndicatorInfos:
+    properties:
+      agreementNo:
+        type: integer
+      attributeInfoList:
+        items:
+          $ref: '#/definitions/apimodel.AttributeInfoList'
+        type: array
+      cycleCode:
+        type: integer
+      cycleInstance:
+        type: integer
+      cycleYear:
+        type: integer
+      offerInstance:
+        type: integer
+      partitionId:
+        type: integer
+      performanceIndicatorId:
+        type: integer
+    type: object
+  apimodel.RatedEventsInfo:
+    properties:
+      additionalCharge:
+        type: string
+      apn:
+        type: string
+      billingArrangement:
+        type: string
+      callFwdInd:
+        type: string
+      calledNumber:
+        type: string
+      callingNumber:
+        type: string
+      chargeAmt:
+        type: string
+      code:
+        type: string
+      customerId:
+        type: string
+      destinationCode:
+        type: string
+      destinationCountry:
+        type: string
+      directionCode:
+        type: string
+      discountAmt:
+        type: string
+      displayOnBill:
+        type: string
+      duration:
+        type: string
+      endTime:
+        type: string
+      eventId:
+        type: string
+      eventState:
+        type: string
+      eventStateReasonCode:
+        type: string
+      eventType:
+        type: string
+      eventTypeId:
+        type: string
+      eventTypeName:
+        type: string
+      freeAmt:
+        type: string
+      guidingResourceId:
+        type: string
+      imsi:
+        type: string
+      offerCode:
+        type: string
+      operatorName:
+        type: string
+      pabxOrigSubscriber:
+        type: string
+      payChannel:
+        type: string
+      paymentCategory:
+        type: string
+      period:
+        type: string
+      roamInd:
+        type: string
+      roundedUnits:
+        type: string
+      roundedUnitsUom:
+        type: string
+      startDate:
+        type: string
+      startTime:
+        type: string
+    type: object
+  apimodel.RatedEventsInfoList:
+    properties:
+      errorMessage:
+        $ref: '#/definitions/apimodel.ErrorMessageInfo'
+      ratedEventsInfoM:
+        items:
+          $ref: '#/definitions/apimodel.RatedEventsInfo'
+        type: array
+      totalSize:
+        type: string
+      transactionId:
+        type: string
+    type: object
+  apimodel.RequestList:
+    properties:
+      accountNo:
+        type: integer
+      subscriberNo:
+        type: integer
+    type: object
+  apimodel.Results:
+    properties:
+      accountNo:
+        type: integer
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/apimodel.Data'
+      message:
+        type: string
+      status:
+        type: string
+      subscriberNo:
+        type: integer
+    type: object
+  apimodel.UsageConsumptionRequest:
+    properties:
+      agreementId:
+        type: string
+      callerUuid:
+        type: string
+      correlatedId:
+        type: string
+      customerId:
+        type: string
+      cycleCode:
+        type: string
+      cycleMonth:
+        type: string
+      cycleYear:
+        type: string
+      externalStructure:
+        type: string
+      pageNumber:
+        type: string
+      pageSize:
+        type: string
+    required:
+    - agreementId
+    - correlatedId
+    - customerId
+    - cycleCode
+    - cycleMonth
+    - cycleYear
+    - externalStructure
+    type: object
+  apimodel.UsageConsumptionResponse:
+    properties:
+      backendResponseList:
+        $ref: '#/definitions/apimodel.BackendResponseList'
+      errorCode:
+        type: string
+      getRatedPerformanceIndicatorsList:
+        items:
+          $ref: '#/definitions/apimodel.GetRatedPerformanceIndicatorsList'
+        type: array
+      message:
+        type: string
+      uuid:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: '[BDH] Implement for support project Billing Upgrade.'
+  title: '[BDH] Swagger APIs'
+  version: "00.01"
+paths:
+  /bdhgateway/getcreditlimitwithperformanceindicators:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: X-Channel
+        in: header
+        name: X-Channel
+        type: string
+      - description: X-GatewayType
+        in: header
+        name: X-GatewayType
+        type: string
+      - description: X-LegacyUsername
+        in: header
+        name: X-LegacyUsername
+        type: string
+      - description: X-Username
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - description: requestInfo
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/apimodel.GetCreditLimitWithPerformanceIndicatorsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/apimodel.GetCreditLimitWithPerformanceIndicatorsResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+      summary: bdhgateway
+      tags:
+      - bdh-gateway-controller
+  /bdhgateway/getusage:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: X-Channel
+        in: header
+        name: X-Channel
+        type: string
+      - description: X-GatewayType
+        in: header
+        name: X-GatewayType
+        type: string
+      - description: X-LegacyUsername
+        in: header
+        name: X-LegacyUsername
+        type: string
+      - description: X-Username
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - description: requestInfo
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/apimodel.GetUsageRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/apimodel.GetUsageResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+      summary: bdhgateway
+      tags:
+      - bdh-gateway-controller
+  /bdhgateway/usageconsumption:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: X-Channel
+        in: header
+        name: X-Channel
+        type: string
+      - description: X-GatewayType
+        in: header
+        name: X-GatewayType
+        type: string
+      - description: X-LegacyUsername
+        in: header
+        name: X-LegacyUsername
+        type: string
+      - description: X-Username
+        in: header
+        name: X-Username
+        required: true
+        type: string
+      - description: requestInfo
+        in: body
+        name: Request
+        required: true
+        schema:
+          $ref: '#/definitions/apimodel.UsageConsumptionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/apimodel.UsageConsumptionResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+        default:
+          description: ""
+          schema:
+            $ref: '#/definitions/apimodel.HttpErrorResponse'
+      summary: bdhgateway
+      tags:
+      - bdh-gateway-controller
+schemes:
+- http
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
